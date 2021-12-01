@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using TillSharp.Extenders.Collections;
 using TillSharp.Math.Array;
 using TillSharp.Math.ArrayExtender;
@@ -23,21 +24,26 @@ namespace Day1
             (long parsing, long calculation, int solution) runtimePart1 = SolveBoth(inputPath, 1);
             Console.WriteLine("Solution Part 1:");
             Console.WriteLine(runtimePart1.solution);
-            Console.WriteLine("Solution for day " + day + " part 1 took: " + runtimePart1.parsing + " ticks to parse and " 
-                + runtimePart1.calculation + " ticks to calculate");
+            double ns1 = 1000000000.0 * (double)runtimePart1.calculation / Stopwatch.Frequency;
+            double pns1 = 1000000000.0 * (double)runtimePart1.parsing / Stopwatch.Frequency;
+            Console.WriteLine("Solution for day " + day + " part 1 took: " + pns1 + " ns to parse and " 
+                + ns1 + " ns to calculate");
             Console.WriteLine();
 
             (long parsing, long calculation, int solution) runtimePart2 = SolveBoth(inputPath, 3);
             Console.WriteLine("Solution Part 2:");
             Console.WriteLine(runtimePart2.solution);
-            Console.WriteLine("Solution for day " + day + " part 1 took: " + runtimePart2.parsing + " ticks to parse and " 
-                + runtimePart2.calculation + " ticks to calculate");
-
+            double ns2 = 1000000000.0 * (double)runtimePart2.calculation / Stopwatch.Frequency;
+            double pns2 = 1000000000.0 * (double)runtimePart2.parsing / Stopwatch.Frequency;
+            Console.WriteLine("Solution for day " + day + " part 1 took: " + pns2 + " ns to parse and " 
+                + ns2 + " ns to calculate");
+            Console.ReadLine();
         }
 
         private static (long parsing, long calculation, int solution) SolveBoth(string inputPath, int distance)
         {
             Stopwatch stopwatch = new Stopwatch();
+            Stopwatch stopwatch2 = new Stopwatch();
             int result = 0;
             string input = File.ReadAllText(inputPath);
             stopwatch.Start();
@@ -50,7 +56,7 @@ namespace Day1
             stopwatch.Restart();
 
             //calculation
-            for (int i = 0; i < depths.Length - distance; i++)
+            for(int i = 0; i < depths.Length - distance; i++)
             {
                 result += depths[i] < depths[i + distance] ? 1 : 0;
             }
