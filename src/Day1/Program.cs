@@ -32,14 +32,20 @@ namespace Day1
             int result = 0;
             string input = File.ReadAllText("../../../input/inputP1");
             stopwatch.Start();
+
+            //parsing
             int[] depths = Array.ConvertAll(input.Split("\n"), int.Parse);
+
             stopwatch.Stop();
             long parseTime = stopwatch.ElapsedTicks;
             stopwatch.Restart();
+
+            //calculation
             for (int i = 1; i < depths.Length; i++)
             {
                 result += depths[i - 1] < depths[i] ? 1 : 0;
             }
+
             stopwatch.Stop();
             Console.WriteLine("Solution Part 1:");
             Console.WriteLine(result);
@@ -52,14 +58,20 @@ namespace Day1
             int result = 0;
             string input = File.ReadAllText("../../../input/inputP1");
             stopwatch.Start();
+
+            //parsing
             int[] depths = Array.ConvertAll(input.Split("\n"), int.Parse);
+
             stopwatch.Stop();
             long parseTime = stopwatch.ElapsedTicks;
             stopwatch.Restart();
+
+            //calculation
             for (int i = 0; i < depths.Length-3; i++)
             {
                 result += (depths[i..(i + 3)].Sum() < depths[(i + 1)..(i + 4)].Sum()) ? 1 : 0;
             }
+
             stopwatch.Stop();
             Console.WriteLine("Solution Part 2:");
             Console.WriteLine(result);
