@@ -76,7 +76,8 @@ namespace Day1
             //calculation
             for (int i = 0; i < depths.Length-3; i++)
             {
-                result += (depths[i..(i + 3)].Sum() < depths[(i + 1)..(i + 4)].Sum()) ? 1 : 0;
+                //result += (depths[i..(i + 3)].Sum() < depths[(i + 1)..(i + 4)].Sum()) ? 1 : 0;
+                result += (depths[i] < depths[i+3]) ? 1 : 0;
             }
 
             stopwatch.Stop();
