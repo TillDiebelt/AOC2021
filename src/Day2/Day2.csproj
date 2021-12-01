@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="TillSharp.Base" Version="1.0.0" />
+    <PackageReference Include="TillSharp.Extenders" Version="1.0.0" />
+    <PackageReference Include="TillSharp.Math" Version="1.0.0" />
+  </ItemGroup>
+
+</Project>

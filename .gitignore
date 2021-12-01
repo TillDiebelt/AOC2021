@@ -353,4 +353,4 @@ MigrationBackup/
 # Others
 *.zip
 /Tillsharp.Media
-/input
+input/
