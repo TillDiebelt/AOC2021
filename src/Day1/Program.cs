@@ -13,24 +13,33 @@ namespace Day1
     class Program
     {
         public static int day = 1;
+        public static string inputPath = "../../../input/input";
 
         static void Main(string[] args)
         {
-            (long parsing, long calculation) runtimePart1 = SolvePart1();
+            Console.WriteLine("=================================================================================================");
+            Console.WriteLine("                                       AOC 2021 Day " + day + "                                  ");
+            Console.WriteLine("=================================================================================================");
+            (long parsing, long calculation, int solution) runtimePart1 = SolvePart1(inputPath);
+            Console.WriteLine("Solution Part 1:");
+            Console.WriteLine(runtimePart1.solution);
             Console.WriteLine("Solution for day " + day + " part 1 took: " + runtimePart1.parsing + " ticks to parse and " 
                 + runtimePart1.calculation + " ticks to calculate");
             Console.WriteLine();
-            (long parsing, long calculation) runtimePart2 = SolvePart2();
+
+            (long parsing, long calculation, int solution) runtimePart2 = SolvePart2(inputPath);
+            Console.WriteLine("Solution Part 2:");
+            Console.WriteLine(runtimePart2.solution);
             Console.WriteLine("Solution for day " + day + " part 1 took: " + runtimePart2.parsing + " ticks to parse and " 
                 + runtimePart2.calculation + " ticks to calculate");
 
         }
 
-        private static (long parsing, long calculation) SolvePart1()
+        private static (long parsing, long calculation, int solution) SolvePart1(string inputPath)
         {
             Stopwatch stopwatch = new Stopwatch();
             int result = 0;
-            string input = File.ReadAllText("../../../input/inputP1");
+            string input = File.ReadAllText(inputPath);
             stopwatch.Start();
 
             //parsing
@@ -47,16 +56,14 @@ namespace Day1
             }
 
             stopwatch.Stop();
-            Console.WriteLine("Solution Part 1:");
-            Console.WriteLine(result);
-            return (parseTime,stopwatch.ElapsedTicks);
+            return (parseTime,stopwatch.ElapsedTicks, result);
         }
 
-        private static (long parsing, long calculation) SolvePart2()
+        private static (long parsing, long calculation, int solution) SolvePart2(string inputPath)
         {
             Stopwatch stopwatch = new Stopwatch();
             int result = 0;
-            string input = File.ReadAllText("../../../input/inputP1");
+            string input = File.ReadAllText(inputPath);
             stopwatch.Start();
 
             //parsing
@@ -73,9 +80,7 @@ namespace Day1
             }
 
             stopwatch.Stop();
-            Console.WriteLine("Solution Part 2:");
-            Console.WriteLine(result);
-            return (parseTime, stopwatch.ElapsedTicks);
+            return (parseTime, stopwatch.ElapsedTicks, result);
         }
     }
 }
