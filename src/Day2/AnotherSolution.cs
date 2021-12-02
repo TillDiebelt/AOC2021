@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 
@@ -22,7 +23,7 @@ namespace Day2
             var movements = input.Split("\n").Select(x => movementFactory[x.Split(' ')[0]](Convert.ToInt32(x.Split(' ')[1])));
 
             //calculation
-
+            sw.Start();
             (int forward, int depth) finalDestination = movements.Aggregate(
                 (0, 0), ((int forward, int depth) destination, Movement current) =>
                     current switch
@@ -34,7 +35,6 @@ namespace Day2
             );
 
             result = finalDestination.depth * finalDestination.forward;
-
             return result;
         }
 
