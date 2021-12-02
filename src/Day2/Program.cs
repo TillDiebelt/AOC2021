@@ -7,12 +7,12 @@ namespace Day2
     {
         public static int day = 2;
         public static string inputPath = "../../../input/input";
+        private const int FIRST_CHAR = 0;
+        private const int DIRECTION = 0;
 
         static void Main(string[] args)
         {
-            Console.WriteLine("=================================================================================================");
-            Console.WriteLine("                                       AOC 2021 Day " + day + "                                  ");
-            Console.WriteLine("=================================================================================================");
+            Console.WriteLine("AOC 2021 Day " + day);
             Console.WriteLine("Solution Part 1:");
             Console.WriteLine(SolvePart1(inputPath));
             Console.WriteLine("Solution Part 2:");
@@ -34,7 +34,7 @@ namespace Day2
             foreach (var movement in movements)
             {
                 var pair = movement.Split(' ');
-                switch (pair[0][0])
+                switch (pair[DIRECTION][FIRST_CHAR])
                 {
                     case 'f':
                         forward += Convert.ToInt32(pair[1]);

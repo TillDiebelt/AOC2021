@@ -23,7 +23,6 @@ namespace Day2
             var movements = input.Split("\n").Select(x => movementFactory[x.Split(' ')[0]](Convert.ToInt32(x.Split(' ')[1])));
 
             //calculation
-            sw.Start();
             (int forward, int depth) finalDestination = movements.Aggregate(
                 (0, 0), ((int forward, int depth) destination, Movement current) =>
                     current switch

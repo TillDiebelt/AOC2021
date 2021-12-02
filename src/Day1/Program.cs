@@ -10,9 +10,7 @@ namespace Day1
 
         static void Main(string[] args)
         {
-            Console.WriteLine("=================================================================================================");
-            Console.WriteLine("                                       AOC 2021 Day " + day + "                                  ");
-            Console.WriteLine("=================================================================================================");
+            Console.WriteLine("AOC 2021 Day " + day);
             Console.WriteLine("Solution Part 1:");
             Console.WriteLine(SolveBoth(inputPath, 1));
             Console.WriteLine("Solution Part 2:");
