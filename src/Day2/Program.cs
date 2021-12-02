@@ -9,7 +9,7 @@ using TillSharp.Math.ArrayExtender;
 using TillSharp.Math.Parser;
 using TillSharp.Math.Vectors;
 
-namespace Day1
+namespace Day2
 {
     class Program
     {

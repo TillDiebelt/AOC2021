@@ -6,6 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="System.Collections" Version="4.3.0" />
     <PackageReference Include="TillSharp.Base" Version="1.0.0" />
     <PackageReference Include="TillSharp.Extenders" Version="1.0.0" />
     <PackageReference Include="TillSharp.Math" Version="1.0.0" />
