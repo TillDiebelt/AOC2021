@@ -21,7 +21,7 @@ namespace Day1
             Console.WriteLine("=================================================================================================");
             Console.WriteLine("                                       AOC 2021 Day " + day + "                                  ");
             Console.WriteLine("=================================================================================================");
-            (long parsing, long calculation, int solution) runtimePart1 = SolvePart1(inputPath);
+            (long parsing, long calculation, long solution) runtimePart1 = SolvePart1(inputPath);
             Console.WriteLine("Solution Part 1:");
             Console.WriteLine(runtimePart1.solution);
             double ns1 = 1000000000.0 * (double)runtimePart1.calculation / Stopwatch.Frequency;
@@ -30,7 +30,7 @@ namespace Day1
                 + ns1 + " ns to calculate");
             Console.WriteLine();
 
-            (long parsing, long calculation, int solution) runtimePart2 = SolvePart2(inputPath);
+            (long parsing, long calculation, long solution) runtimePart2 = SolvePart2(inputPath);
             Console.WriteLine("Solution Part 2:");
             Console.WriteLine(runtimePart2.solution);
             double ns2 = 1000000000.0 * (double)runtimePart2.calculation / Stopwatch.Frequency;
@@ -40,41 +40,85 @@ namespace Day1
             Console.ReadLine();
         }
 
-        private static (long parsing, long calculation, int solution) SolvePart1(string inputPath)
+        private static (long parsing, long calculation, long solution) SolvePart1(string inputPath)
         {
             Stopwatch stopwatch = new Stopwatch();
             Stopwatch stopwatch2 = new Stopwatch();
-            int result = 0;
+            long result = 0;
             string input = File.ReadAllText(inputPath);
             stopwatch.Start();
 
             //parsing
+            var movements = input.Split("\n");
 
             stopwatch.Stop();
             long parseTime = stopwatch.ElapsedTicks;
             stopwatch.Restart();
 
             //calculation
+            int forward = 0;
+            int depth = 0;
+            foreach (var movement in movements)
+            {
+                var pair = movement.Split(' ');
+                switch (pair[0][0])
+                {
+                    case 'f':
+                        forward += Convert.ToInt32(pair[1]);
+                        break;
+                    case 'd':
+                        depth += Convert.ToInt32(pair[1]);
+                        break;
+                    case 'u':
+                        depth -= Convert.ToInt32(pair[1]);
+                        break;
+                }
+            }
+
+            result = forward * depth;
 
             stopwatch.Stop();
             return (parseTime, stopwatch.ElapsedTicks, result);
         }
 
-        private static (long parsing, long calculation, int solution) SolvePart2(string inputPath)
+        private static (long parsing, long calculation, long solution) SolvePart2(string inputPath)
         {
             Stopwatch stopwatch = new Stopwatch();
             Stopwatch stopwatch2 = new Stopwatch();
-            int result = 0;
+            long result = 0;
             string input = File.ReadAllText(inputPath);
             stopwatch.Start();
 
             //parsing
+            var movements = input.Split("\n");
 
             stopwatch.Stop();
             long parseTime = stopwatch.ElapsedTicks;
             stopwatch.Restart();
 
             //calculation
+            int aim = 0;
+            int horizontal = 0;
+            int depth = 0;
+            foreach (var movement in movements)
+            {
+                var pair = movement.Split(' ');
+                switch (pair[0][0])
+                {
+                    case 'f':
+                        depth += Convert.ToInt32(pair[1]) * aim;
+                        horizontal += Convert.ToInt32(pair[1]);
+                        break;
+                    case 'd':
+                        aim += Convert.ToInt32(pair[1]);
+                        break;
+                    case 'u':
+                        aim -= Convert.ToInt32(pair[1]);
+                        break;
+                }
+            }
+
+            result = horizontal * depth;
 
             stopwatch.Stop();
             return (parseTime, stopwatch.ElapsedTicks, result);
