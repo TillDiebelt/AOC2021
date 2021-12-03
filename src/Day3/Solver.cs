@@ -16,39 +16,20 @@ namespace Day3
             long result = 0;
             string input = File.ReadAllText(inputPath);
 
-            var cleanedInput = input.Replace("\n", "").Replace("\r", "");
+            var binaries = input.Split('\n');
 
-            var KeyPairs = cleanedInput.Select((x, i) => new KeyValuePair<int, char>(i % (bits), x))
-                .GroupBy(p => new { p.Key, p.Value })
-                .Select(g => new
-                {
-                    KeyValuePair = g.Key,
-                    Count = g.Count()
-                })
-                .OrderByDescending(k => k.KeyValuePair.Key);
+            string gamma = "";
+            string epsilon = "";
+            for (int i = 0; i < binaries[0].Length - 1; i++)
+            {
+                var countSearched = binaries.Where(x => x[i] == '1').Count();
+                var rest = binaries.Length - countSearched;
 
-            var epsilon = KeyPairs
-                .Where(e =>
-                    e.Count ==
-                        KeyPairs
-                        .Where(c => e.KeyValuePair.Key == c.KeyValuePair.Key)
-                        .OrderByDescending(value => value.Count)
-                        .FirstOrDefault().Count)
-                .Select(x => x.KeyValuePair.Value)
-                .Aggregate("", (string res, char current) => res + current);
-
-            var gamma = KeyPairs
-                .Where(e =>
-                    e.Count ==
-                        KeyPairs
-                        .Where(c => e.KeyValuePair.Key == c.KeyValuePair.Key)
-                        .OrderBy(value => value.Count)
-                        .FirstOrDefault().Count)
-                .Select(x => x.KeyValuePair.Value)
-                .Aggregate("", (string res, char current) => res + current);
+                gamma += countSearched > rest ? '1' : '0';
+                epsilon += countSearched < rest ? '1' : '0';
+            }
 
             result = Convert.ToInt64(gamma, 2) * Convert.ToInt64(epsilon, 2);
-
             return result;
         }
 
@@ -58,9 +39,13 @@ namespace Day3
             string input = File.ReadAllText(inputPath).Replace("\r", "");
             var binaries = input.Split('\n').ToList();
 
+            Stopwatch sw = new Stopwatch();
+            sw.Start();
             var oxy = Search(binaries, '1');
             var co2 = Search(binaries, '0');
             result = Convert.ToInt64(oxy, 2) * Convert.ToInt64(co2, 2);
+            sw.Stop();
+            Console.WriteLine(sw.ElapsedTicks);
             return result;
         }
 
