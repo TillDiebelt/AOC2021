@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using TillSharp.Extenders;
@@ -67,10 +68,10 @@ namespace Day3
         {
             for (int i = 0; i < binaries[0].Length; i++)
             {
-                var commons = binaries.Where(x => x[i] == commonDenominator).Count();
-                var uncommons = binaries.Count - commons;
+                var countSearched = binaries.Where(x => x[i] == commonDenominator).Count();
+                var rest = binaries.Count - countSearched;
 
-                char mostCommon = commons == uncommons ? commonDenominator : commons > uncommons ? '1' : '0';
+                char mostCommon = countSearched == rest ? commonDenominator : countSearched > rest ? '1' : '0';
 
                 binaries = binaries.Where(x => mostCommon == x[i]).ToList();
                 if (binaries.Count == 1)
