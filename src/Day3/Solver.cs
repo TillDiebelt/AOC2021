@@ -1,16 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using TillSharp.Extenders;
 
 namespace Day3
 {
     public class Solver
     {
-        private static int bits = 12;
-
         public static long Part1(string inputPath)
         {
             long result = 0;
@@ -39,13 +35,9 @@ namespace Day3
             string input = File.ReadAllText(inputPath).Replace("\r", "");
             var binaries = input.Split('\n').ToList();
 
-            Stopwatch sw = new Stopwatch();
-            sw.Start();
             var oxy = Search(binaries, '1');
             var co2 = Search(binaries, '0');
             result = Convert.ToInt64(oxy, 2) * Convert.ToInt64(co2, 2);
-            sw.Stop();
-            Console.WriteLine(sw.ElapsedTicks);
             return result;
         }
 
