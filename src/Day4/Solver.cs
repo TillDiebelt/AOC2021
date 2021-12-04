@@ -9,41 +9,18 @@ namespace Day4
     {
         public static long Part1(string inputPath)
         {
-            long result = 0;
-            string input = File.ReadAllText(inputPath).Replace("\r","");
-            var lines = input.Split('\n', StringSplitOptions.RemoveEmptyEntries);
-            var turns = Array.ConvertAll(lines[0].Split(","), int.Parse);
-
-            List<Bingo> games = new List<Bingo>();
-            for (int i = 0; i < lines.Length / 5; i++)
-            {
-                games.Add(new Bingo(lines[(i*5+1)..(i*5+6)]));
-            }
-
-            result = play(games, turns).First();
-
-            return result;
+            (List<Bingo> games, int[] turns) play = parse(inputPath);
+            return playGames(play.games, play.turns).Last();
         }
 
         public static long Part2(string inputPath)
         {
-            long result = 0;
-            string input = File.ReadAllText(inputPath).Replace("\r", "");
-            var lines = input.Split('\n', StringSplitOptions.RemoveEmptyEntries);
-            var turns = Array.ConvertAll(lines[0].Split(","), int.Parse);
-
-            List<Bingo> games = new List<Bingo>();
-            for (int i = 0; i < lines.Length / 5; i++)
-            {
-                games.Add(new Bingo(lines[(i * 5 + 1)..(i * 5 + 6)]));
-            }
-
-            result = play(games, turns).Last();
+            (List<Bingo> games, int[] turns) play = parse(inputPath);
+            return playGames(play.games, play.turns).Last();
             
-            return result;
         }
 
-        private static List<int> play(List<Bingo> games, int[] turns)
+        private static List<int> playGames(List<Bingo> games, int[] turns)
         {
             List<int> winners = new List<int>();
 
@@ -63,6 +40,19 @@ namespace Day4
             }
 
             return winners;
+        }
+
+        private static (List<Bingo>, int[]) parse(string path)
+        {
+            string input = File.ReadAllText(path).Replace("\r", "");
+            var lines = input.Split('\n', StringSplitOptions.RemoveEmptyEntries);
+            var turns = Array.ConvertAll(lines[0].Split(","), int.Parse);
+            List<Bingo> games = new List<Bingo>();
+            for (int i = 0; i < lines.Length / 5; i++)
+            {
+                games.Add(new Bingo(lines[(i * 5 + 1)..(i * 5 + 6)]));
+            }
+            return (games,turns);
         }
     }
 }
