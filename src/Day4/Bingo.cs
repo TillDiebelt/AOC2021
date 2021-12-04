@@ -1,26 +1,25 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using TillSharp.Extenders.Collections;
-using TillSharp.Math;
 
 namespace Day4
 {
     public class Bingo
     {
-        int[][] game;
+        private int[][] game;
+        private int width = 5;
+        private int hight = 5;
 
         public Bingo(string[] s)
         {
-            game = new int[5][];
-            int count = 0;
+            game = new int[hight][];
+            int rowIndex = 0;
             foreach (var line in s)
             {
-                var values = line.Replace("  ", " ").Split(" ").TakeLast(5).ToArray();
+                var values = line.Replace("  ", " ").Split(" ").TakeLast(width).ToArray();
                 var row = Array.ConvertAll(values, int.Parse);
-                game[count] = row;
-                count++;
+                game[rowIndex] = row;
+                rowIndex++;
             }
         }
 
@@ -32,7 +31,7 @@ namespace Day4
 
         public int SumEmpty()
         {
-            return game.ReduceNested((int sum, int current) => current != -1 ? sum+current : sum);
+            return game.Aggregate(0, (int result, int[] current) => result + current.Aggregate(0, (x,y) => y != -1 ? x + y : x)); // ReduceNested((int sum, int current) => current != -1 ? sum+current : sum);
         }
 
         private bool isWinning()
