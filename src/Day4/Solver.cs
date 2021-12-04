@@ -10,14 +10,13 @@ namespace Day4
         public static long Part1(string inputPath)
         {
             (List<Bingo> games, int[] turns) play = parse(inputPath);
-            return playGames(play.games, play.turns).Last();
+            return playGames(play.games, play.turns).First();
         }
 
         public static long Part2(string inputPath)
         {
             (List<Bingo> games, int[] turns) play = parse(inputPath);
-            return playGames(play.games, play.turns).Last();
-            
+            return playGames(play.games, play.turns).Last();            
         }
 
         private static List<int> playGames(List<Bingo> games, int[] turns)
