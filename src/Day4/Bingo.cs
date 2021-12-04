@@ -2,22 +2,18 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using TillSharp.Extenders.Collections;
+using TillSharp.Math;
 
 namespace Day4
 {
     public class Bingo
     {
         int[][] game;
-        bool[][] seen;
 
         public Bingo(string[] s)
         {
             game = new int[5][];
-            seen = new bool[5][];
-            for (int i = 0; i < 5; i++)
-            {
-                seen[i] = new bool[5];
-            }
             int count = 0;
             foreach (var line in s)
             {
@@ -34,8 +30,7 @@ namespace Day4
             {
                 for (int j = 0; j < 5; j++)
                 {
-                    if (game[i][j] == number)
-                        seen[i][j] = true;
+                    if(game[i][j] == number) game[i][j] = -1;
                 }
             }
             return isWinning();
@@ -43,27 +38,20 @@ namespace Day4
 
         public int SumEmpty()
         {
-            int sum = 0;
-            for (int i = 0; i < 5; i++)
-            {
-                for (int j = 0; j < 5; j++)
-                {
-                    sum += seen[i][j] ? 0 : game[i][j];
-                }
-            }
-            return sum;
+            int sumNotPlayed = game.ReduceNested((int sum, int current) => current != -1 ? sum+current : sum);
+            return sumNotPlayed;
         }
 
         private bool isWinning()
         {
             bool winning = false;
-            for (int y = 0; y < seen.GetLength(0); y++)
+            for (int y = 0; y < game.GetLength(0); y++)
             {
-                bool row = seen[y].All(x => x == true);
-                bool column = true;
-                for (int x = 0; x < seen.GetLength(0); x++)
-                    column &= seen[x][y];
-                if (row || column)
+                bool row = game[y].All(x => x == -1);
+                int column = 0;
+                for (int x = 0; x < game.GetLength(0); x++)
+                    column += game[x][y];
+                if (row || column==-5)
                 { 
                     winning = true;
                     break;

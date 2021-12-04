@@ -20,17 +20,7 @@ namespace Day4
                 games.Add(new Bingo(lines[(i*5+1)..(i*5+6)]));
             }
 
-            foreach (var turn in turns)
-            {
-                //var win = games.Select(x => x.Play(turn)).Contains(true);
-                foreach (var game in games)
-                {
-                    if (game.Play(turn))
-                    {
-                        return turn * game.SumEmpty();
-                    }
-                }
-            }
+            result = play(games, turns).First();
 
             return result;
         }
@@ -48,22 +38,31 @@ namespace Day4
                 games.Add(new Bingo(lines[(i * 5 + 1)..(i * 5 + 6)]));
             }
 
+            result = play(games, turns).Last();
+            
+            return result;
+        }
+
+        private static List<int> play(List<Bingo> games, int[] turns)
+        {
+            List<int> winners = new List<int>();
+
             foreach (var turn in turns)
             {
                 //var win = games.Select(x => x.Play(turn)).Contains(true);
-                for(int i = 0; i < games.Count; i++)
+                for (int i = 0; i < games.Count; i++)
                 {
                     var game = games[i];
                     if (game.Play(turn))
                     {
-                        if (games.Count == 1)
-                            return turn * game.SumEmpty();
+                        winners.Add(turn * game.SumEmpty());
                         games.Remove(game);
                         i--;
                     }
                 }
             }
-            return result;
+
+            return winners;
         }
     }
 }

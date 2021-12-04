@@ -6,4 +6,10 @@
     <LangVersion>9</LangVersion>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="TillSharp.Base" Version="1.0.0" />
+    <PackageReference Include="TillSharp.Extenders" Version="1.0.0" />
+    <PackageReference Include="TillSharp.Math" Version="1.0.0" />
+  </ItemGroup>
+
 </Project>
