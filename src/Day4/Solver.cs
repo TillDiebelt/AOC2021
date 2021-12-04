@@ -47,9 +47,10 @@ namespace Day4
             var lines = input.Split('\n', StringSplitOptions.RemoveEmptyEntries);
             var turns = Array.ConvertAll(lines[0].Split(","), int.Parse);
             List<Bingo> games = new List<Bingo>();
-            for (int i = 0; i < lines.Length / 5; i++)
+            int bingoLength = 5;
+            for (int i = 0; i < lines.Length / bingoLength; i++)
             {
-                games.Add(new Bingo(lines[(i * 5 + 1)..(i * 5 + 6)]));
+                games.Add(new Bingo(lines[(i * bingoLength + 1)..(i * bingoLength + 6)]));
             }
             return (games,turns);
         }

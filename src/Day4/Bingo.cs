@@ -26,38 +26,19 @@ namespace Day4
 
         public bool Play(int number)
         {
-            for (int i = 0; i < 5; i++)
-            {
-                for (int j = 0; j < 5; j++)
-                {
-                    if(game[i][j] == number) game[i][j] = -1;
-                }
-            }
+            game = game.Select(x => x.Select(y => y == number ? -1 : y).ToArray()).ToArray();
             return isWinning();
         }
 
         public int SumEmpty()
         {
-            int sumNotPlayed = game.ReduceNested((int sum, int current) => current != -1 ? sum+current : sum);
-            return sumNotPlayed;
+            return game.ReduceNested((int sum, int current) => current != -1 ? sum+current : sum);
         }
 
         private bool isWinning()
         {
-            bool winning = false;
-            for (int y = 0; y < game.GetLength(0); y++)
-            {
-                bool row = game[y].All(x => x == -1);
-                int column = 0;
-                for (int x = 0; x < game.GetLength(0); x++)
-                    column += game[x][y];
-                if (row || column==-5)
-                { 
-                    winning = true;
-                    break;
-                }
-            }
-            return winning;
+            var transpose = game.First().Select((_, i) => game.Select(row => row.ElementAt(i)));
+            return game.Any(x => x.All(y => y == -1)) || transpose.Any(x => x.All(y => y == -1));
         }
     }
 }
