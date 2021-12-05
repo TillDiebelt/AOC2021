@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 
@@ -16,7 +18,7 @@ namespace Day5
             foreach (var line in lines)
                 Draw(line, field, diag);
 
-            result = field.Where(x => x.Value >= 2).Count();
+            result = field.Where(x => x.Value > 1).Count();
             return result;
         }
 
@@ -32,7 +34,7 @@ namespace Day5
 
         public static void Draw(Line line, Dictionary<(int, int), int> field, bool diag = false)
         {
-            if (line.start.x == line.end.x || line.start.y == line.end.y || diag)
+            if (diag || line.start.x == line.end.x || line.start.y == line.end.y )
             {
                 foreach (var point in line.GetPoints())
                     if (!field.TryAdd((point.y, point.x), 1))
