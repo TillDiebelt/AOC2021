@@ -9,7 +9,7 @@ namespace Day5
 {
     public class Solver
     {
-        public static long Part1(string inputPath)
+        public static long Solve(string inputPath, bool diag)
         {
             long result = 0;
             List<Line> lines = ParseDay5(inputPath);
@@ -17,21 +17,7 @@ namespace Day5
             int[,] field = new int[1100, 1100];
 
             foreach (var line in lines)
-                line.Draw(field);
-
-            result = field.Cast<int>().Where(x => x >= 2).Count();
-            return result;
-        }
-
-        public static long Part2(string inputPath)
-        {
-            long result = 0;
-            List<Line> lines = ParseDay5(inputPath);
-
-            int[,] field = new int[1100, 1100];
-
-            foreach (var line in lines)
-                line.Draw(field, true);
+                line.Draw(field, diag);
 
             result = field.Cast<int>().Where(x => x >= 2).Count();
             return result;

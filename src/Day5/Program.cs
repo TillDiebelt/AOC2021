@@ -15,9 +15,9 @@ namespace Day5
         static void Main(string[] args)
         {
             Console.WriteLine("Solution Part 1:");
-            Console.WriteLine(Solver.Part1(inputPath));
+            Console.WriteLine(Solver.Solve(inputPath, false));
             Console.WriteLine("Solution Part 2:");
-            Console.WriteLine(Solver.Part2(inputPath));
+            Console.WriteLine(Solver.Solve(inputPath, true));
             Console.ReadLine();
         }
 	}
