@@ -19,10 +19,8 @@ namespace Day4
             return playGames(play.games, play.turns).Last();            
         }
 
-        private static List<int> playGames(List<Bingo> games, int[] turns)
+        private static IEnumerable<int> playGames(List<Bingo> games, int[] turns)
         {
-            List<int> winners = new List<int>();
-
             foreach (var turn in turns)
             {
                 //var win = games.Select(x => x.Play(turn)).Contains(true);
@@ -31,14 +29,12 @@ namespace Day4
                     var game = games[i];
                     if (game.Play(turn))
                     {
-                        winners.Add(turn * game.SumEmpty());
+                        yield return turn * game.SumEmpty();
                         games.Remove(game);
                         i--;
                     }
                 }
             }
-
-            return winners;
         }
 
         private static (List<Bingo>, int[]) parse(string path)
