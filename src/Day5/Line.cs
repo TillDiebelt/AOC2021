@@ -29,8 +29,8 @@ namespace Day5
         {
             (int x, int y) point = (start.x, start.y);
             int length = Math.Max(Math.Abs(start.x - end.x), Math.Abs(start.y - end.y));
-            int stepX = point.x += Math.Sign(end.x - start.x);
-            int stepY = point.y += Math.Sign(end.y - start.y);
+            int stepX = Math.Sign(end.x - start.x);
+            int stepY = Math.Sign(end.y - start.y);
             for (int i = 0; i <= length; i ++)
             {
                 yield return point;
