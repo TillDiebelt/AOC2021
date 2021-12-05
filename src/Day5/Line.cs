@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Day5
 {
     public class Line
     {
-        (int x, int y) start;
-        (int x, int y) end;
+        public (int x, int y) start;
+        public (int x, int y) end;
 
         public Line(string input)
         {
@@ -18,17 +17,7 @@ namespace Day5
             this.end = (Convert.ToInt32(endPoint[0]), Convert.ToInt32(endPoint[1]));
         }
 
-        public int[,] Draw(int[,] field, bool diag = false)
-        {
-            if (this.start.x == this.end.x || this.start.y == this.end.y || diag)
-            {
-                foreach (var point in getPoints())
-                field[point.y, point.x]++;
-            }
-            return field;
-        }
-
-        private IEnumerable<(int x, int y)> getPoints()
+        public IEnumerable<(int x, int y)> GetPoints()
         {
             (int x, int y) point = (start.x, start.y);
             int length = Math.Max(Math.Abs(start.x - end.x), Math.Abs(start.y - end.y));
