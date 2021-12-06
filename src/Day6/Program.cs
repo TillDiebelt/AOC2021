@@ -1,18 +1,18 @@
 ﻿using System;
 
-namespace Day5
+namespace Day6
 {
     class Program
     {
-        public static int day = 5;
+        public static int day = 6;
         public static string inputPath = "../../../input/input";
 
         static void Main(string[] args)
         {
             Console.WriteLine("Solution Part 1:");
-            Console.WriteLine(Solver.Solve(inputPath, false));
+            Console.WriteLine(Solver.Solve(inputPath, 80));
             Console.WriteLine("Solution Part 2:");
-            Console.WriteLine(Solver.Solve(inputPath, true));
+            Console.WriteLine(Solver.Solve(inputPath, 256));
             Console.ReadLine();
         }
 	}
