@@ -1,15 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
-using TillSharp.Math.Parser;
-using TillSharp.Math.Functions;
-using TillSharp.Math.Vectors;
-using TillSharp.Math.Array;
-using TillSharp.Math.ArrayExtender;
-using TillSharp.Math;
 using TillSharp.Extenders.Collections;
-using TillSharp.Extenders.String;
-using TillSharp.Extenders.Numerical;
 using System.Collections.Generic;
 
 namespace Day8

@@ -11,7 +11,7 @@ using TillSharp.Extenders.Collections;
 using TillSharp.Extenders.String;
 using TillSharp.Extenders.Numerical;
 
-namespace Day0
+namespace Day9
 {
     public class Solver
     {
