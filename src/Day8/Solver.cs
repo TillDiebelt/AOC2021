@@ -19,25 +19,25 @@ namespace Day8
         public static long SolvePart1(string inputPath)
         {
             string input = File.ReadAllText(inputPath).Replace("\r", "");
-            var rightEntries = input.Split('\n', StringSplitOptions.RemoveEmptyEntries).Select(x => x.Split("|")[1].Split(' ', StringSplitOptions.RemoveEmptyEntries));
+            var rightEntries = input.Split('\n', StringSplitOptions.RemoveEmptyEntries).Map(x => x.Split("|")[1].Split(' ', StringSplitOptions.RemoveEmptyEntries));
             
             List<int> simpleNumbers = new List<int>() { 2, 3, 4, 7 };
 
-            return rightEntries.Aggregate(
+            return rightEntries.Reduce(
                 0, (long count, string[] numbers) =>
                 count + 
                 numbers
-                    .Select(x => x.Length)
-                    .Where(x => simpleNumbers.Any(y => y ==x))
+                    .Map(x => x.Length)
+                    .Filter(x => simpleNumbers.Any(y => y ==x))
                     .Count());
         }
 
         public static long SolvePart2(string inputPath)
         {
             string input = File.ReadAllText(inputPath).Replace("\r", "");
-            var displays = input.Split('\n', StringSplitOptions.RemoveEmptyEntries).Select(x => new SevenSegment(x));
+            var displays = input.Split('\n', StringSplitOptions.RemoveEmptyEntries).Map(x => new SevenSegment(x));
 
-            return displays.Aggregate(0, (long sum, SevenSegment display) => sum + display.GetValue());
+            return displays.Reduce(0, (long sum, SevenSegment display) => sum + display.GetValue());
         }
     }
 }
