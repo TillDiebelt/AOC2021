@@ -1,15 +1,19 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
 using TillSharp.Math.Parser;
 
 namespace Day0
 {
     public class Solver
     {
-        public static long SolvePart0(string inputPath)
+        public static long SolvePart1(string inputPath)
         {
             string input = File.ReadAllText(inputPath).Replace("\r", "");
-            var lines = input.Split('\n', StringSplitOptions.RemoveEmptyEntries);            
+            var lines = input.Split('\n', StringSplitOptions.RemoveEmptyEntries);
+            //var tupels = input.Split('\n', StringSplitOptions.RemoveEmptyEntries).Select(x => (Convert.ToInt32(x.Replace(" ","").Split("->")[0]), Convert.ToInt32(x.Replace(" ", "").Split("->")[1])));
+            //var ints = input.Split(',', StringSplitOptions.RemoveEmptyEntries).Select(x => Convert.ToInt32(x));
+            //var x = lines.Map(x => x).Reduce((x,y) => x + y);
 
             long result = 0;
 
