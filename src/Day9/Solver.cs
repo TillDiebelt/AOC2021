@@ -39,8 +39,6 @@ namespace Day9
 
             long result = 0;
 
-
-
             return result;
         }
     }

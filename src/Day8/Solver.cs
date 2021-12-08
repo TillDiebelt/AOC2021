@@ -3,6 +3,7 @@ using System.IO;
 using System.Linq;
 using TillSharp.Extenders.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace Day8
 {
@@ -27,9 +28,39 @@ namespace Day8
         public static long SolvePart2(string inputPath)
         {
             string input = File.ReadAllText(inputPath).Replace("\r", "");
-            var displays = input.Split('\n', StringSplitOptions.RemoveEmptyEntries).Map(x => new SevenSegment(x));
 
-            return displays.Reduce(0, (long sum, SevenSegment display) => sum + display.GetValue());
+            Stopwatch sw = new Stopwatch();
+            sw.Start();
+            var displays = input.Split('\n', StringSplitOptions.RemoveEmptyEntries).Map(x => SevenSegment(x));
+
+            var result = displays.Reduce(0, (long sum, int display) => sum + display);
+            sw.Stop();
+            Console.WriteLine(sw.ElapsedMilliseconds);
+            return result;
         }
+
+        public static int SevenSegment(string input)
+        {
+            var sides = input.Split('|');
+            var right = sides[1].Split(' ', StringSplitOptions.RemoveEmptyEntries);
+
+            var counts = sides[0].GroupBy(x => x).Map(x => (x.Key, x.Count())).ToDictionary(t => t.Key, t => t.Item2);
+
+            return right.Select((digit, i) => (digit.Reduce(0, (int value, char current) => value + counts[current]), i))
+                .Reduce(0, (result, current) =>
+                     result + (encoder[current.Item1] * (int)Math.Pow(10, 3 - current.i)));
+        }
+
+        private static Dictionary<int, int> encoder = new Dictionary<int, int>() {
+            { 42, 0 },
+            { 17, 1 },
+            { 34, 2 },
+            { 39, 3 },
+            { 30, 4 },
+            { 37, 5 },
+            { 41, 6 },
+            { 25, 7 },
+            { 49, 8 },
+            { 45, 9 }};
     }
 }

@@ -6,6 +6,7 @@ namespace Day8
     {
         public static int day = 8;
         public static string inputPath = "../../../input/input";
+        public static string inputPathT = "../../../input/inputTest";
 
         static void Main(string[] args)
         {
