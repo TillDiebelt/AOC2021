@@ -29,13 +29,9 @@ namespace Day8
         {
             string input = File.ReadAllText(inputPath).Replace("\r", "");
 
-            Stopwatch sw = new Stopwatch();
-            sw.Start();
             var displays = input.Split('\n', StringSplitOptions.RemoveEmptyEntries).Map(x => SevenSegment(x));
 
             var result = displays.Reduce(0, (long sum, int display) => sum + display);
-            sw.Stop();
-            Console.WriteLine(sw.ElapsedMilliseconds);
             return result;
         }
 
