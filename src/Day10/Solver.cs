@@ -29,22 +29,11 @@ namespace Day10
             Stack<char> open = new Stack<char>();
             foreach (var bracket in line)
             {
-                switch (bracket)
-                {
-                    case '(':
-                    case '<':
-                    case '{':
-                    case '[':
-                        open.Push(bracket);
-                        break;
-                    case ')':
-                    case ']':
-                    case '}':
-                    case '>':
-                        if (open.Pop() != inverse[bracket])
-                            return corruptetCost[bracket];
-                    break;
-                }
+                if (openingBrackets.Contains(bracket))
+                    open.Push(bracket);
+                else
+                    if (open.Pop() != inverse[bracket])
+                        return corruptetCost[bracket];
             }
             return 0;
         }
