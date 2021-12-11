@@ -1,10 +1,10 @@
 ﻿using System;
 
-namespace Day0
+namespace Day11
 {
     class Program
     {
-        public static int day = 0;
+        public static int day = 11;
         public static string inputPath = "../../../input/input";
         public static string inputPathTest = "../../../input/inputTest";
 
@@ -19,10 +19,10 @@ namespace Day0
             Console.WriteLine("\nTests:");
             var test1 = Solver.SolvePart1(inputPathTest);
             Console.WriteLine(test1);
-            if (test1 == -1) Console.WriteLine("test 1 successful"); else Console.WriteLine("test 1 failed");
+            if (test1 == 1656) Console.WriteLine("test 1 successful"); else Console.WriteLine("test 1 failed");
             var test2 = Solver.SolvePart2(inputPathTest);
             Console.WriteLine(test2);
-            if (test2 == -1) Console.WriteLine("test 2 successful"); else Console.WriteLine("test 2 failed");
+            if (test2 == 195) Console.WriteLine("test 2 successful"); else Console.WriteLine("test 2 failed");
             Console.ReadLine();
         }
 	}

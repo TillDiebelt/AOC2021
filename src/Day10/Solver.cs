@@ -62,13 +62,7 @@ namespace Day10
                 }
                 if (!skip)
                 {
-                    long completionCost = 0;
-                    while (open.Count > 0)
-                    {
-                        completionCost *= 5;
-                        completionCost += bracketCost[open.Pop()];
-                    }
-                    completionCosts.Add(completionCost);
+                    completionCosts.Add(open.Reduce(0,(long result , char x) => result * 5 + bracketCost[x]));
                 }
             }
 
