@@ -10,6 +10,7 @@ using TillSharp.Math;
 using TillSharp.Extenders.Collections;
 using TillSharp.Extenders.String;
 using TillSharp.Extenders.Numerical;
+using System.Diagnostics;
 
 namespace Day11
 {
@@ -85,7 +86,7 @@ namespace Day11
                             }
                         }
                 }
-                if(flashed.Cast<bool>().Where(x => x == true).Count() == (field.GetUpperBound(0)+1) * (field.GetUpperBound(1)+1)) return i+1;
+                if (flashed.Cast<bool>().Where(x => x == true).Count() == (field.GetUpperBound(0) + 1) * (field.GetUpperBound(1) + 1)) return i + 1; 
             }
 
             return 0;

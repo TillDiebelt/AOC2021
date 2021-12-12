@@ -22,7 +22,7 @@ namespace Day0
             //var tupels = input.Split('\n', StringSplitOptions.RemoveEmptyEntries).Select(x => (Convert.ToInt32(x.Replace(" ","").Split("->")[0]), Convert.ToInt32(x.Replace(" ", "").Split("->")[1])));
             //var ints = input.Split(',', StringSplitOptions.RemoveEmptyEntries).Select(x => Convert.ToInt32(x));
             //var x = lines.Map(x => x).Reduce((x,y) => x + y);
-            //needed for tillsharp: int : char.ToDigit() , List<(int,int)> : array.GetNeighbours(x,y)
+            //needed for tillsharp: int : char.ToDigit() , List<(int,int)> : array.GetNeighbours(x,y), 2darrayMap
 
             long result = 0;
 
