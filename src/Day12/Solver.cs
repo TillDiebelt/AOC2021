@@ -22,8 +22,7 @@ namespace Day12
             Dictionary<string, Cave> graph = Parse(inputPath);
             Cave start = graph["start"];
             Cave end = graph["end"];
-            long result = Paths(start, end, graph);
-            return result;
+            return Paths(start, end, graph);
         }
 
         public static long SolvePart2(string inputPath)
@@ -31,8 +30,7 @@ namespace Day12
             Dictionary<string, Cave> graph = Parse(inputPath);
             Cave start = graph["start"];
             Cave end = graph["end"];
-            long result = Paths(start, end, graph, false);
-            return result;
+            return Paths(start, end, graph, false);
         }
 
         private static Dictionary<string, Cave> Parse(string inputPath)
@@ -76,10 +74,10 @@ namespace Day12
 
         private static int Paths(Cave start, Cave end, Dictionary<string, Cave> graph, bool twice)
         {
-            int uniquePaths = 0;
-            graph[start.id].visited = true;
             if (start.id == end.id)
                 return 1;
+            int uniquePaths = 0;
+            graph[start.id].visited = true;
             foreach (var next in start.connected)
             {
                 if (next == "start")
