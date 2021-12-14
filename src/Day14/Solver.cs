@@ -111,25 +111,23 @@ namespace Day14
     {
         public static long[,] MultiplyMatrix(this long[,] A, long[,] B)
         {
-            int rA = A.GetLength(0);
-            int cA = A.GetLength(1);
-            int rB = B.GetLength(0);
-            int cB = B.GetLength(1);
-            long temp = 0;
-            long[,] kHasil = new long[rA, cB];
-            for (int i = 0; i < rA; i++)
+            int rowA = A.GetLength(0);
+            int columnA = A.GetLength(1);
+            int columnB = B.GetLength(1);
+            long[,] result = new long[rowA, columnB];
+            for (int row = 0; row < rowA; row++)
             {
-                for (int j = 0; j < cB; j++)
+                for (int column = 0; column < columnB; column++)
                 {
-                    temp = 0;
-                    for (int k = 0; k < cA; k++)
+                    long tmp = 0;
+                    for (int k = 0; k < columnA; k++)
                     {
-                        temp += A[i, k] * B[k, j];
+                        tmp += A[row, k] * B[k, column];
                     }
-                    kHasil[i, j] = temp;
+                    result[row, column] = tmp;
                 }
             }
-            return kHasil;
+            return result;
         }
     }
 }
