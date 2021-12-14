@@ -53,64 +53,64 @@ namespace Day0
             return self - 48;
         }
 
-        public static IEnumerable<(int x, int y)> Neighboars<T>(this T[][] self, int x, int y)
+        public static IEnumerable<(int x, int y)> Neighbours<T>(this T[][] self, int x, int y)
         {
-            List<(int x, int y)> neighboars = new List<(int x, int y)>();
-            if (x - 1 >= 0) neighboars.Add((x - 1, y));
-            if (x + 1 < self[y].Length) neighboars.Add((x + 1, y));
-            if (y - 1 >= 0) neighboars.Add((x, y - 1));
-            if (y + 1 < self.Length) neighboars.Add((x, y + 1));
-            return neighboars;
+            List<(int x, int y)> neighbours = new List<(int x, int y)>();
+            if (x - 1 >= 0) neighbours.Add((x - 1, y));
+            if (x + 1 < self[y].Length) neighbours.Add((x + 1, y));
+            if (y - 1 >= 0) neighbours.Add((x, y - 1));
+            if (y + 1 < self.Length) neighbours.Add((x, y + 1));
+            return neighbours;
         }
 
-        public static IEnumerable<(int x, int y)> Neighboars<T>(this T[,] self, int x, int y)
+        public static IEnumerable<(int x, int y)> Neighbours<T>(this T[,] self, int x, int y)
         {
-            List<(int x, int y)> neighboars = new List<(int x, int y)>();
-            if (x - 1 >= 0) neighboars.Add((x - 1, y));
-            if (x + 1 <= self.GetUpperBound(1)) neighboars.Add((x + 1, y));
-            if (y - 1 >= 0) neighboars.Add((x, y - 1));
-            if (y + 1 <= self.GetUpperBound(0)) neighboars.Add((x, y + 1));
-            return neighboars;
+            List<(int x, int y)> neighbours = new List<(int x, int y)>();
+            if (x - 1 >= 0) neighbours.Add((x - 1, y));
+            if (x + 1 <= self.GetUpperBound(1)) neighbours.Add((x + 1, y));
+            if (y - 1 >= 0) neighbours.Add((x, y - 1));
+            if (y + 1 <= self.GetUpperBound(0)) neighbours.Add((x, y + 1));
+            return neighbours;
         }
 
-        public static IEnumerable<(int x, int y)> NeighboarsDiag<T>(this T[][] self, int x, int y)
+        public static IEnumerable<(int x, int y)> NeighboursDiag<T>(this T[][] self, int x, int y)
         {
-            List<(int x, int y)> neighboars = new List<(int x, int y)>();
+            List<(int x, int y)> neighbours = new List<(int x, int y)>();
             if (x - 1 >= 0)
             {
-                neighboars.Add((x - 1, y));
-                if (y - 1 >= 0) neighboars.Add((x - 1, y - 1));
-                if (y + 1 < self.Length) neighboars.Add((x - 1, y + 1));
+                neighbours.Add((x - 1, y));
+                if (y - 1 >= 0) neighbours.Add((x - 1, y - 1));
+                if (y + 1 < self.Length) neighbours.Add((x - 1, y + 1));
             }
             if (x + 1 < self[y].Length)
             {
-                neighboars.Add((x + 1, y));
-                if (y - 1 >= 0) neighboars.Add((x + 1, y - 1));
-                if (y + 1 < self.Length) neighboars.Add((x + 1, y + 1));
+                neighbours.Add((x + 1, y));
+                if (y - 1 >= 0) neighbours.Add((x + 1, y - 1));
+                if (y + 1 < self.Length) neighbours.Add((x + 1, y + 1));
             }
-            if (y - 1 >= 0) neighboars.Add((x, y - 1));
-            if (y + 1 < self[y].Length) neighboars.Add((x, y + 1));
-            return neighboars;
+            if (y - 1 >= 0) neighbours.Add((x, y - 1));
+            if (y + 1 < self[y].Length) neighbours.Add((x, y + 1));
+            return neighbours;
         }
 
-        public static IEnumerable<(int x, int y)> NeighboarsDiag<T>(this T[,] self, int x, int y)
+        public static IEnumerable<(int x, int y)> NeighboursDiag<T>(this T[,] self, int x, int y)
         {
-            List<(int x, int y)> neighboars = new List<(int x, int y)>();
+            List<(int x, int y)> neighbours = new List<(int x, int y)>();
             if (x - 1 >= 0)
             {
-                neighboars.Add((x - 1, y));
-                if (y - 1 >= 0) neighboars.Add((x - 1, y - 1));
-                if (y + 1 <= self.GetUpperBound(0)) neighboars.Add((x - 1, y + 1));
+                neighbours.Add((x - 1, y));
+                if (y - 1 >= 0) neighbours.Add((x - 1, y - 1));
+                if (y + 1 <= self.GetUpperBound(0)) neighbours.Add((x - 1, y + 1));
             }
             if (x + 1 <= self.GetUpperBound(1))
             {
-                neighboars.Add((x + 1, y));
-                if (y - 1 >= 0) neighboars.Add((x + 1, y - 1));
-                if (y + 1 <= self.GetUpperBound(0)) neighboars.Add((x + 1, y + 1));
+                neighbours.Add((x + 1, y));
+                if (y - 1 >= 0) neighbours.Add((x + 1, y - 1));
+                if (y + 1 <= self.GetUpperBound(0)) neighbours.Add((x + 1, y + 1));
             }
-            if (y - 1 >= 0) neighboars.Add((x, y - 1));
-            if (y + 1 <= self.GetUpperBound(0)) neighboars.Add((x, y + 1));
-            return neighboars;
+            if (y - 1 >= 0) neighbours.Add((x, y - 1));
+            if (y + 1 <= self.GetUpperBound(0)) neighbours.Add((x, y + 1));
+            return neighbours;
         }
 
         public static T[,] MapApply<T>(this T[,] self, Func<T, T> func)

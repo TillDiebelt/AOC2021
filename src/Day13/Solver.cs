@@ -36,7 +36,6 @@ namespace Day13
                 tupels = tupels.Map(x => x.Item1 > foldline ?
                 (foldline - (x.Item1 - foldline), x.Item2) : x);
             }
-
             return tupels.Cast<(int,int)>().Distinct().Count(); 
         }
 
@@ -53,16 +52,9 @@ namespace Day13
                 var fold = foldInst.Split(" ")[2].Split('=');
                 string folddir = fold[0];
                 int foldline = Convert.ToInt32(fold[1]);
-                if (folddir == "y")
-                {
-                    points = points.Map(x => x.Item2 > foldline ?
-                    (x.Item1 , (foldline - (x.Item2 - foldline))) : x);
-                }
-                else
-                {
-                    points = points.Map(x => x.Item1 > foldline ?
-                    (foldline - (x.Item1 - foldline), x.Item2) : x);
-                }
+                points = folddir == "y" ? 
+                    points.Map(x => x.Item2 > foldline ? (x.Item1 , (foldline - (x.Item2 - foldline))) : x) :
+                    points.Map(x => x.Item1 > foldline ? (foldline - (x.Item1 - foldline), x.Item2) : x);
             }
 
             (int, int) max = points.Reduce((res, cur) => (cur.Item1 > res.Item1 ? cur.Item1 : res.Item1 , cur.Item2 > res.Item2 ? cur.Item2 : res.Item2));
