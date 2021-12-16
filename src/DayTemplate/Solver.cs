@@ -24,6 +24,8 @@ namespace Day0
             //var ints = input.Split(',', StringSplitOptions.RemoveEmptyEntries).Select(x => Convert.ToInt32(x));
             //var x = lines.Map(x => x).Reduce((x,y) => x + y);
 
+            //tillsharp matrix, prioqueue
+
             long result = 0;
 
             int startIndex = 0;

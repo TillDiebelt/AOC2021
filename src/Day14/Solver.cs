@@ -11,6 +11,7 @@ using TillSharp.Extenders.Collections;
 using TillSharp.Extenders.String;
 using TillSharp.Extenders.Numerical;
 using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace Day14
 {
@@ -88,7 +89,10 @@ namespace Day14
             }
 
             //result matrix is creates with multipliing with matrix for each step
-            for (int i = 0; i < steps - 1; i++) resultMatrix = resultMatrix.MultiplyMatrix(ruleMatrix);
+            for (int i = 1; i < steps - 1; i++)
+            {
+                resultMatrix = resultMatrix.MultiplyMatrix(ruleMatrix);
+            }
 
             //create the result vector for each tupel
             var resultVector = resultMatrix.MultiplyMatrix(inputVector);
@@ -103,6 +107,7 @@ namespace Day14
             //all chars are doubled in the list (except first and last of input string there *2-1), so create list of counts/2
             var countOfEachCharInOutput = LinkedCharCount.ToList().Select(x => (x.Value + x.Value%2)/2);
             long result = countOfEachCharInOutput.Max() - countOfEachCharInOutput.Min();
+
             return result;
         }
     }
