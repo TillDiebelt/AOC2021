@@ -30,7 +30,7 @@ namespace Day4
         }
 
         public int SumEmpty()
-        {
+        {               
             return game.Aggregate(0, (int result, int[] current) => result + current.Aggregate(0, (x,y) => y != -1 ? x + y : x)); // ReduceNested((int sum, int current) => current != -1 ? sum+current : sum);
         }
 
